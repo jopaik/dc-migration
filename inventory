@@ -1,0 +1,7 @@
+[dcm]
+vm-before  ansible_host=192.168.1.165
+vm-after   ansible_host=192.168.1.169
+
+[dcm:vars]
+ansible_user=root
+ansible_ssh_pass=Ansible123

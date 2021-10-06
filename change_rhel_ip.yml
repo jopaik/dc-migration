@@ -1,0 +1,21 @@
+- name: Get Facts
+  hosts: vm-before
+  connection: local
+  gather_facts: yes
+  vars:
+    new_ip_add: "192.168.1.169/24"
+    network_connections:
+
+      # Create a bridge profile, which is the parent of VLAN.
+      - name: enp2s0
+        state: up
+        type: ethernet
+        interface_name: enp2s0
+        ip:
+          dhcp: no
+          address:
+            - "{{ new_ip_add }}"
+          auto6: no
+
+  roles:
+    - linux-system-roles.network
