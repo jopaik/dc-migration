@@ -4,8 +4,7 @@
   gather_facts: yes
   vars:
     new_ip_add: "192.168.1.169/24"
-    network_connections:
-
+    network_connection:
       # Create a bridge profile, which is the parent of VLAN.
       - name: enp2s0
         state: up
@@ -14,7 +13,7 @@
         ip:
           dhcp: no
           address:
-            - "{{ new_ip_add }}"
+            - "192.168.1.169/24"
           auto6: no
   tasks:
     -  name: start the service
