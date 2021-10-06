@@ -1,4 +1,4 @@
-- name: Get Facts
+- name: Change-RHEL-IP-Address
   hosts: vm-before
   connection: local
   gather_facts: yes
@@ -18,4 +18,4 @@
           auto6: no
 
   roles:
-    - linux-system-roles.network
+    - redhat.rhel_system_roles.network
