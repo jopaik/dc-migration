@@ -16,12 +16,12 @@
           address:
             - "{{ new_ip_add }}"
           auto6: no
- tasks:
-    -  Name: start the service
+  tasks:
+    -  name: start the service
        service:
          name: NetworkManager
          state: started
          enabled: true
-         
+
   roles:
     - redhat.rhel_system_roles.network
