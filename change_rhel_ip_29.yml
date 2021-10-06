@@ -12,14 +12,14 @@
   tasks:
   - name: replace ip address
     replace:
-      path: /etc/sysconfig/network-scripts/ifcfg-"{{ conn_name }}"
+      path: "/etc/sysconfig/network-scripts/ifcfg-{{ conn_name }}"
       regexp: "{{ old_ip_add }}"
       replace: "{{ new_ip_add }}"
       backup: no
 
   - name: replace gw address
     replace:
-      path: /etc/sysconfig/network-scripts/ifcfg-"{{ conn_name }}"
+      path: "/etc/sysconfig/network-scripts/ifcfg-{{ conn_name }}"
       regexp: "{{ old_gw4 }}"
       replace: "{{ new_gw4 }}"
       backup: no
