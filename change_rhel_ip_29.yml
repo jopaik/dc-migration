@@ -1,0 +1,17 @@
+- name: Change-RHEL-IP-Address
+  hosts: vm-before
+  connection: local
+  gather_facts: yes
+  vars:
+    conn_name: enp2s0
+    new_ip_add: "192.168.1.169/24"
+    new_gw4: "192.168.1.1"
+
+  tasks:
+  - name: Try nmcli add Ethernet - conn_name only & ip4 gw4
+    nmcli:
+      type: ethernet
+      conn_name: '{{ conn_name }}'
+      ip4: '{{ new_ip_add }}'
+      gw4: '{{ new_gw4 }}'
+      state: present
