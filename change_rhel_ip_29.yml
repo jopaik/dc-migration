@@ -1,7 +1,5 @@
 - name: Change-RHEL-IP-Address
-  hosts: vm-before
-  connection: local
-  gather_facts: yes
+  hosts: all
   vars:
     conn_name: enp2s0
     old_ip_add: "192.168.1.165"
