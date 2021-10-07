@@ -1,26 +1,23 @@
 - name: Change-RHEL-IP-Address
-  hosts: vm-before
-  connection: local
-  gather_facts: yes
+  hosts: all
   vars:
-    new_ip_add: "192.168.1.169/24"
-    network_connection:
-      # Create a bridge profile, which is the parent of VLAN.
-      - name: enp2s0
-        state: up
-        type: ethernet
-        interface_name: enp2s0
-        ip:
-          dhcp: no
-          address:
-            - "192.168.1.169/24"
-          auto6: no
-  tasks:
-    -  name: start the service
-       service:
-         name: NetworkManager
-         state: started
-         enabled: true
+    conn_name: enp2s0
+    old_ip_add: "192.168.1.165"
+    new_ip_add: "192.168.1.169"
+    old_gw4: "192.168.1.1"
+    new_gw4: "192.168.1.1"
 
-  roles:
-    - redhat.rhel_system_roles.network
+  tasks:
+  - name: replace ip address
+    ansible.builtin.replace:
+      path: "/etc/sysconfig/network-scripts/ifcfg-{{ conn_name }}"
+      regexp: "{{ old_ip_add }}"
+      replace: "{{ new_ip_add }}"
+      backup: no
+
+  - name: replace gw address
+    ansible.builtin.replace:
+      path: "/etc/sysconfig/network-scripts/ifcfg-{{ conn_name }}"
+      regexp: "{{ old_gw4 }}"
+      replace: "{{ new_gw4 }}"
+      backup: no
